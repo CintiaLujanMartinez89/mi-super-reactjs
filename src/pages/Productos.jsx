@@ -1,5 +1,7 @@
+
 // ✅ Importamos React y los hooks necesarios
 import React, { useEffect, useState } from "react";
+import Carrito from "./Carrito";
 
 function Productos() {
   // ✅ Estado para guardar la lista de productos que trae el backend
@@ -63,6 +65,9 @@ function Productos() {
           </div>
         ))}
       </div>
+
+      {/* ✅ Agregamos el carrito debajo de los productos */}
+      <Carrito carrito={carrito} setCarrito={setCarrito} />
     </div>
   );
 }
