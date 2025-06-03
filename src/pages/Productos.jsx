@@ -13,7 +13,7 @@ function Productos() {
   // ✅ useEffect se ejecuta una vez al montar el componente
   // Acá hacemos la solicitud al backend para traer los productos
   useEffect(() => {
-    fetch("http://localhost:3001/api/productos") // Cambiar puerto si usás otro
+   fetch("https://6d4c-2803-9800-90b0-fd3-60c0-6e41-6a66-3e14.ngrok-free.app/api/productos") //puerto
       .then((res) => res.json()) // Convertimos la respuesta a JSON
       .then((data) => setProductos(data)) // Guardamos los productos en el estado
       .catch((error) =>
