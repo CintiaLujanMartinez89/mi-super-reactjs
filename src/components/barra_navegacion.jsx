@@ -1,5 +1,6 @@
 import React from "react";
-import "./barra_navegacion.css"; // ✅ Importamos los estilos
+import { Link } from "react-router-dom"; // ✅ Importamos Link
+import "./barra_navegacion.css"; // ✅ Estilos
 
 const BarraNavegacion = () => {
   return (
@@ -7,9 +8,9 @@ const BarraNavegacion = () => {
       <h1>Supermercado Online 🛒</h1>
       <nav>
         <ul className="nav-list">
-          <li><a href="/">Inicio</a></li>
-          <li><a href="/productos">Productos</a></li>
-          <li><a href="/carrito">Carrito</a></li>
+          <li><Link to="/">Inicio</Link></li>
+          <li><Link to="/productos">Productos</Link></li>
+          <li><Link to="/carrito">Carrito</Link></li>
         </ul>
       </nav>
     </header>

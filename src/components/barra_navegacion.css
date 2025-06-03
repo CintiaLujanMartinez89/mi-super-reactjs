@@ -1,49 +1,55 @@
 /* Barra de navegación */
 .navbar {
-    width: 98%; /* ✅ Ocupa todo el ancho de la pantalla */
-    background-color: #0077b6; /* Azul fuerte */
-    color: white;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between; /* ✅ Distribuye el contenido */
-    align-items: center;
-    position: fixed; /* ✅ Fijado en la parte superior */
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* ✅ Efecto de sombra elegante */
+  width: 100%;
+  background-color: #0077b6; /* Azul fuerte */
+  color: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Fijado en la parte superior */
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); /* Sombra elegante */
 }
 
-/* Estilos del título */
+/* Título */
 .navbar h1 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 0;
 }
 
-/* Estilos del menú */
+/* Menú de navegación */
 .nav-list {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  padding: 0;
+  margin: 0;
 }
 
+/* Elementos del menú */
 .nav-list li {
-    display: inline;
+  display: inline;
 }
 
-.nav-list li a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 1.1rem;
-    padding: 10px 15px;
-    border-radius: 8px;
-    transition: background 0.3s ease-in-out, transform 0.2s;
+/* Enlaces del menú */
+.nav-list li a,
+.nav-list li .link {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  padding: 10px 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease-in-out, transform 0.2s;
 }
 
-.nav-list li a:hover {
-    background-color: rgba(255, 255, 255, 0.2); /* ✅ Efecto elegante */
-    transform: scale(1.05); /* ✅ Efecto de zoom al pasar el mouse */
+/* Hover sobre enlaces */
+.nav-list li a:hover,
+.nav-list li .link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }

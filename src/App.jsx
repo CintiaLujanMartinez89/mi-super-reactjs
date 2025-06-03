@@ -1,22 +1,21 @@
-// 📌 Importamos las dependencias necesarias
-import { useState } from "react"; // ✅ Manejo de estado en React
+// src/App.jsx
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Layout from "./components/Layout";
+import Productos from "./pages/Productos";
+// Podés agregar otras páginas como Home y Carrito
 
-import "./App.css"; // ✅ Importamos los estilos
-import BarraNavegacion from "./components/barra_navegacion"; // ✅ Importamos la barra de navegación
-
-// 📌 Definimos el componente principal de la aplicación
 function App() {
-
- 
-
   return (
-    <>
-      {/* ✅ Agregamos la barra de navegación en la parte superior */}
-      <BarraNavegacion />
-    
-    </>
+    <BrowserRouter>
+      <Layout>
+        <Routes>
+          <Route path="/productos" element={<Productos />} />
+          {/* <Route path="/" element={<Home />} /> */}
+          {/* <Route path="/carrito" element={<Carrito />} /> */}
+        </Routes>
+      </Layout>
+    </BrowserRouter>
   );
 }
 
-// 📌 Exportamos el componente `App` para que sea usado en `main.jsx`
 export default App;
