@@ -1,7 +1,7 @@
 // ✅ Importamos React y los hooks necesarios
 import React, { useEffect, useState } from "react";
-import Carrito from "./Carrito";
-import Inicio from"./Inicio";
+import Carrito from "../components/Carrito";
+
 function Productos() {
   // ✅ Estado para guardar la lista de productos que trae el backend
   const [productos, setProductos] = useState([]);
@@ -11,7 +11,7 @@ function Productos() {
 
   // ✅ useEffect se ejecuta una vez al montar el componente
  useEffect(() => {
-  fetch(" https://0b7b-2803-9800-90b0-fd3-217f-d19b-8dc6-bf74.ngrok-free.app/api/productos", {
+  fetch(" https://47d7-2803-9800-90b0-fd3-920-5a36-47dc-4a66.ngrok-free.app/api/productos", {
  headers: {
     "Accept": "application/json",
     "ngrok-skip-browser-warning": "true" // ✅ Ignorar advertencia de Ngrok
@@ -32,19 +32,28 @@ function Productos() {
 }, []);
 
   // ✅ Función para agregar un producto al carrito
-  const agregarAlCarrito = (producto) => {
-    setCarrito([...carrito, producto]); // Agregamos al array sin mutarlo
-    alert(`${producto.nombre} agregado al carrito`);
-  };
+const agregarAlCarrito = (producto) => {
+  const productoExistente = carrito.find((item) => item.id === producto.id);
+
+  if (productoExistente) {
+    setCarrito(
+      carrito.map((item) =>
+        item.id === producto.id ? { ...item, cantidad: item.cantidad + 1 } : item
+      )
+    );
+  } else {
+    setCarrito([...carrito, { ...producto, cantidad: 1 }]);
+  }
+};
 
   return (
-    <div style={{ marginTop: "100px", padding: "20px" }}>
+    <div style={{ marginTop: "5px", padding: "5px" }}>
       <h2>Productos disponibles</h2>
-
-      {/* ✅ Mostrar los datos en JSON para depuración */}
+    
+      {/* // ✅ Mostrar los datos en JSON para depuración }
       <pre style={{ background: "#f1f1f1", padding: "10px", borderRadius: "5px" }}>
         {JSON.stringify(productos, null, 2)}
-      </pre>
+      </pre>  */}
 
       {/* ✅ Contenedor de tarjetas */}
       <div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
@@ -57,7 +66,7 @@ function Productos() {
                 border: "1px solid #ccc",
                 borderRadius: "10px",
                 padding: "15px",
-                width: "200px",
+                width: "150px",
                 textAlign: "center",
                 backgroundColor: "#f9f9f9",
               }}
@@ -67,7 +76,7 @@ function Productos() {
                 <img
                   src={producto.imagen}
                   alt={producto.nombre}
-                  style={{ width: "100px", height: "100px" }}
+                  style={{ width: "90px", height: "90px" }}
                 />
               ) : (
                 <p>Imagen no disponible</p>

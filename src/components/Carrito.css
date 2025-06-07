@@ -1,0 +1,96 @@
+/* 🔹 Estilos generales para el carrito */
+.carrito {
+  position: fixed;
+  right: 0px;
+  top: 30px; /* ✅ Ahora se alinea con la barra de navegación */
+  width: 320px;
+  height: 100vh;
+  background: #ffffff;
+  border-left: 2px solid #ddd;
+  padding: 20px;
+  overflow-y: auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🔹 Título del carrito */
+.carrito h2 {
+  text-align: center;
+  color: #333;
+  font-size: 1.4rem;
+  margin-bottom: 15px;
+}
+
+/* 🔹 Contenedor de productos */
+.carrito-producto {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+
+/* 🔹 Imagen en miniatura */
+.carrito-producto img {
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+}
+
+/* 🔹 Detalles del producto */
+.carrito-detalle {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.carrito-detalle p {
+  margin: 2px 0;
+  font-size: 0.9rem;
+}
+
+/* 🔹 Botones aumentar/disminuir cantidad */
+.carrito-controles {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.carrito-controles button {
+  background: #ddd;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.carrito-controles .aumentar {
+  background: #4CAF50;
+  color: white;
+}
+
+.carrito-controles .disminuir {
+  background: #ddd;
+}
+
+/* 🔹 Botón eliminar */
+.carrito-eliminar {
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* 🔹 Total del carrito */
+.carrito-total {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
