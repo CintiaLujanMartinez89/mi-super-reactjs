@@ -1,17 +1,15 @@
-// src/App.jsx
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout";
 import Productos from "./pages/Productos";
-// Podés agregar otras páginas como Home y Carrito
+import Inicio from "./pages/Inicio"; // 🔹 Ahora se llama "Inicio"
 
 function App() {
   return (
     <BrowserRouter>
       <Layout>
         <Routes>
+          <Route path="/" element={<Inicio />} /> {/* 🔹 Cambio aplicado */}
           <Route path="/productos" element={<Productos />} />
-          {/* <Route path="/" element={<Home />} /> */}
-          {/* <Route path="/carrito" element={<Carrito />} /> */}
         </Routes>
       </Layout>
     </BrowserRouter>

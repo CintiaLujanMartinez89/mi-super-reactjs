@@ -6,27 +6,36 @@ const sql = require("mssql");
 const app = express();
 const PORT = 3001;
 
-// ✅ Middleware
-app.use(cors());
+// ✅ Middleware CORS (incluye ngrok-skip-browser-warning)
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type", "ngrok-skip-browser-warning"]
+}));
+
 app.use(express.json());
 
-// ✅ Configuración de SQL Server
+// ✅ Configuración de conexión SQL Server
 const config = {
-  user: process.env.DB_USER || "public_user", // Usuario de solo lectura
-  password: process.env.DB_PASSWORD || "password123", // Contraseña
-  server: process.env.DB_SERVER || "localhost", // Servidor SQL Server
+  user: process.env.DB_USER || "public_user",
+  password: process.env.DB_PASSWORD || "password123",
+  server: process.env.DB_SERVER || "localhost",
   database: process.env.DB_NAME || "supermercado",
   options: {
-    encrypt: true, // Activar si usas Azure
-    trustServerCertificate: true, // Para entornos locales
+    encrypt: true,
+    trustServerCertificate: true,
   },
 };
 
-// ✅ Conectar a la base de datos al iniciar el servidor
+// ✅ Conexión a la base de datos
+let pool;
+
 async function conectarDB() {
   try {
-    const pool = await sql.connect(config);
-    console.log("✅ Conectado a SQL Server");
+    if (!pool) {
+      pool = await sql.connect(config);
+      console.log("✅ Conectado a SQL Server");
+    }
     return pool;
   } catch (error) {
     console.error("❌ Error conectando a la base de datos:", error);
@@ -34,21 +43,25 @@ async function conectarDB() {
   }
 }
 
-let pool;
-conectarDB().then((dbPool) => (pool = dbPool));
+conectarDB(); // 🔹 Conectar al iniciar
 
-// ✅ Ruta para obtener productos desde SQL Server
+// ✅ Ruta para obtener productos
 app.get("/api/productos", async (req, res) => {
   try {
+    if (!pool) await conectarDB();
+
     const result = await pool.request().query("SELECT * FROM productos");
-    res.json(result.recordset);
+
+    console.log("🧐 Datos de la base de datos:", result.recordset);
+
+    res.status(200).json(result.recordset); // ✅ Devolver productos como JSON
   } catch (error) {
-    console.error("❌ Error obteniendo productos:", error);
-    res.status(500).json({ error: "Error obteniendo productos" });
+    console.error("❌ Error en la consulta SQL:", error);
+    res.status(500).json({ error: "Error al obtener productos" });
   }
 });
 
-// ✅ Servidor escuchando
+// ✅ Iniciar servidor
 app.listen(PORT, () => {
   console.log(`🚀 Backend corriendo en http://localhost:${PORT}`);
 });
