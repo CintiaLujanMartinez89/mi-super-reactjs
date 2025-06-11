@@ -11,7 +11,7 @@ function Productos() {
 
   // ✅ useEffect se ejecuta una vez al montar el componente
  useEffect(() => {
-  fetch(" https://47d7-2803-9800-90b0-fd3-920-5a36-47dc-4a66.ngrok-free.app/api/productos", {
+  fetch("https://3b24-2803-9800-90b0-fd3-7478-5c34-72eb-efef.ngrok-free.app/api/productos", {
  headers: {
     "Accept": "application/json",
     "ngrok-skip-browser-warning": "true" // ✅ Ignorar advertencia de Ngrok

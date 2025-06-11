@@ -2,19 +2,19 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const sql = require("mssql");
-
+const path = require("path");
 const app = express();
 const PORT = 3001;
 
 // ✅ Middleware CORS (incluye ngrok-skip-browser-warning)
 app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST"],
-  allowedHeaders: ["Content-Type", "ngrok-skip-browser-warning"]
+  origin: "*", // ✅ Puedes cambiar "*" por "http://localhost:5173" para mayor seguridad
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "ngrok-skip-browser-warning", "Authorization"],
 }));
 
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, "..", "mi-super-reactjs")));
 // ✅ Configuración de conexión SQL Server
 const config = {
   user: process.env.DB_USER || "public_user",
