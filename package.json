@@ -4,9 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
- 
-  "serve": "vite preview",
-
+    "serve": "vite preview",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -16,6 +14,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "mercadopago": "^2.7.0",
     "mssql": "^11.0.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

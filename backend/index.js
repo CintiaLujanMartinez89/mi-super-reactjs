@@ -5,7 +5,11 @@ const sql = require("mssql");
 const path = require("path");
 const app = express();
 const PORT = 3001;
+const mercadopago = require("mercadopago");
 
+mercadopago.configure({
+  access_token: "APP_USR-4640012569313894-061109-e7aaa13312a3566dd4ef74c68e51c3c9-44370823", // 🔹 Reemplázalo con tu clave de Mercado Pago
+});
 // ✅ Middleware CORS (incluye ngrok-skip-browser-warning)
 app.use(cors({
   origin: "*", // ✅ Puedes cambiar "*" por "http://localhost:5173" para mayor seguridad
